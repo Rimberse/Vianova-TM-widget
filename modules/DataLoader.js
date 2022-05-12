@@ -75,6 +75,31 @@ define
             }
 
             // Vianova's API requests
+            // Retrieves bearer token by calling Vianova's web service
+            const getToken = async () => {
+                const host = "https://api.vianova.dev";
+                const path = '/token'
+                const address = host.concat(path);
+
+                // Setting up the headers
+                const headers = new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                });
+
+                // Setting up the body
+                const body = new URLSearchParams({
+                    username,
+                    password
+                });
+
+                const rawResponse = await fetch(address, {
+                    method: 'POST',
+                    body
+                });
+
+                const data = await rawResponse.json();
+                return data['access_token'];
+            }
 
             // Loads Leaflet with Mapbox map
 
@@ -82,6 +107,9 @@ define
             var exports = {
                 displayPopup: function () {
                     return getCredentials();
+                },
+                displayMap: function () {
+                    console.log(getToken());
                 }
             };
 

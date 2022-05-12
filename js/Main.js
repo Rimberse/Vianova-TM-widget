@@ -27,6 +27,7 @@ define
 
                 const container = document.createElement('div');
                 widget.body.appendChild(container);
+                DataLoader.displayMap();
             },
 
             onResize: function() {
