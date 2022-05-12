@@ -26,31 +26,33 @@
     <!-- <script type="text/javascript" src="http://uwa.netvibes.com/lib/c/UWA/js/UWA_Standalone_Alone.js"></script> -->
 
     <script>
-        const h = 'https://api.vianova.dev';
-        const path = '/token'
-        const address = h.concat(path);
+        (async () => {
+            const h = 'https://api.vianova.dev';
+            const path = '/token'
+            const address = h.concat(path);
 
-        // Setting up the headers
-        const headers = new Headers({
-            'Content-Type': 'application/x-www-form-urlencoded'
-        });
+            // Setting up the headers
+            const headers = new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            });
 
-        const u = prompt('Username:');
-        const p = prompt('Password');
+            const u = prompt('Username:');
+            const p = prompt('Password');
 
-        // Setting up the body
-        const body = new URLSearchParams({
-            username: u,
-            password: p
-        });
+            // Setting up the body
+            const body = new URLSearchParams({
+                username: u,
+                password: p
+            });
 
-        const rawResponse = await fetch(address, {
-            method: 'POST',
-            body
-        });
+            const rawResponse = await fetch(address, {
+                method: 'POST',
+                body
+            });
 
-        const data = await rawResponse.json();
-        console.log(data['access_token']);
+            const data = await rawResponse.json();
+            console.log(data['access_token']);
+        })();
 
         var host = 'https://rimberse.github.io',       // URL of server
             project = '/Vianova-TM-widget';            // folder referencing to your project resources
