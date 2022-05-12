@@ -77,7 +77,6 @@ define
             // Vianova's API requests
             // Retrieves bearer token by calling Vianova's web service
             const getToken = async () => {
-                const host = "https://api.vianova.dev";
                 const path = '/token'
                 const address = host.concat(path);
 
