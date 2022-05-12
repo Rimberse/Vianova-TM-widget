@@ -38,6 +38,7 @@
 
             const u = prompt('Username:');
             const p = prompt('Password');
+            console.log(u, p);
 
             // Setting up the body
             const body = new URLSearchParams({
@@ -48,6 +49,8 @@
             const rawResponse = await fetch(address, {
                 method: 'POST',
                 body
+            }).catch(error => {
+                console.log("Couldn't get token: " + error.message);
             });
 
             const data = await rawResponse.json();
