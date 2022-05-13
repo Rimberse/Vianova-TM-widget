@@ -118,6 +118,35 @@ define
             }
 
             // Loads Leaflet with Mapbox map
+            const createMapFrom = GeoJSON => {
+                const coordinates = [47.559601, 7.588576];
+
+                map = L.map('map', {
+                    center: coordinates,
+                    zoom: 13,
+                    preferCanvas: true,
+                    renderer: L.canvas()
+                });
+
+                const myStyle = {
+                    "color": "#f2ccff",
+                    "weight": 2,
+                    "opacity": 1
+                };
+
+                L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 23,
+                    id: 'mapbox/streets-v11',
+                    tileSize: 512,
+                    zoomOffset: -1,
+                    accessToken: accessToken
+                }).addTo(map);
+
+                L.geoJSON(geoJSON, {
+                    style: myStyle
+                }).addTo(map);
+            }
 
             // Declare public functions or variable here. Accessible by other modules.
             var exports = {
@@ -135,8 +164,30 @@ define
 
 
                                 })
+                            
                             // Load leaflet Map
+                            const geoFeature = {
+                                "type": "Feature",
+                                "properties": {"description": "Test"},
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [[
+                                        [47.560108486131405, 7.580104304527454],
+                                        [47.56319263279651, 7.582807971112017],
+                                        [47.56196189181355, 7.584674788515644],
+                                        [47.56025328581149, 7.584889365228704],
+                                        [47.55958720396944, 7.582593394398956]
+                                    ]]
+                                }
+                            }
 
+                            const geoJSON = {
+                                crs: "EPSG:3414",
+                                type: "FeatureCollection",
+                                features: geoFeature
+                            };
+
+                            createMapFrom(geoJSON);
                         })
                         .catch(error => console.log("Couldn't retrieve bearer token: " + error.message));
                 }

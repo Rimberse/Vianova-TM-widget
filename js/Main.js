@@ -25,6 +25,9 @@ define
                 widget.body.appendChild(DataLoader.displayPopup());
 
                 const container = document.createElement('div');
+                const map = document.createElement('div');
+                map.id = 'map';
+                container.appendChild(map);
                 widget.body.appendChild(container);
                 DataLoader.displayMap();
             },
