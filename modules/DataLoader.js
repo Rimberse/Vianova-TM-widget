@@ -15,7 +15,7 @@ define
             let username;
             let password;
             // Vianova's API
-            const host = 'https://api.vianova.dev';
+            const host = 'https://vianova-tm.herokuapp.com/api';
 
             // Leaflet map;
             let map;
@@ -81,21 +81,22 @@ define
                 const address = host.concat(path);
 
                 // Setting up the headers
-                const headers = new Headers({
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                });
+                // const headers = new Headers({
+                //     'Content-Type': 'application/x-www-form-urlencoded'
+                // });
 
                 // Setting up the body
-                const body = new URLSearchParams({
-                    username,
-                    password
-                });
+                // const body = new URLSearchParams({
+                //     username,
+                //     password
+                // });
 
-                const rawResponse = await fetch(address, {
-                    method: 'POST',
-                    body
-                });
+                // const rawResponse = await fetch(address, {
+                //     method: 'POST',
+                //     body
+                // });
 
+                const rawResponse = await fetch(address, { method: 'GET' });
                 const data = await rawResponse.json();
                 return data['access_token'];
             }
