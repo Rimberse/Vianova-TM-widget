@@ -27,29 +27,32 @@
 
     <script>
         (async () => {
-            const h = 'https://vianova-tm.herokuapp.com/api';
+            let host = 'https://vianova-tm.herokuapp.com/api';
             let path = '/token'
-            const address = h.concat(path);
+            const address = host.concat(path);
 
-            const rawResponse = await fetch(address, { method: 'GET' });
-            const data = await rawResponse.json();
+            let rawResponse = await fetch(address, { method: 'GET' });
+            let data = await rawResponse.json();
             console.log(data['access_token']);
 
-            const host = 'https://api.vianova.dev';
-            path = '/zones/';
+            path = '/zoneID?token=';
 
-                const headers = new Headers({ 'Authorization': 'Bearer ' + data['access_token'] });
+                // const headers = new Headers({ 'Authorization': 'Bearer ' + data['access_token'] });
 
-                const requestOptions = {
-                    method: 'GET',
-                    headers,
-                    redirect: 'follow'
-                };
+                // const requestOptions = {
+                //     method: 'GET'
+                //     // headers,
+                //     // redirect: 'follow'
+                // };
 
-                await fetch(host.concat(path), requestOptions)
-                    .then(response => response.json())
-                    .then(result => { console.log(result.contents[0].zone_id) })
-                    .catch(error => console.log('error', error));
+                // fetch(host.concat(path) + data['access_token'])
+                //     .then(response => response.json())
+                //     .then(result => console.log(result.zone_id))
+                //     .catch(error => console.log('error', error));
+
+                rawResponse = await fetch(host.concat(path) + data['access_token'], { method: 'GET' })
+                data = await rawResponse.json();
+                console.info("INDEX: " + data['zone_id']);
         })();
 
         var host = 'https://rimberse.github.io',       // URL of server

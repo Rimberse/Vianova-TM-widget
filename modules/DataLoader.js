@@ -15,7 +15,7 @@ define
             let username;
             let password;
             // Vianova's API
-            const host = 'https://api.vianova.dev';
+            const host = 'https://vianova-tm.herokuapp.com/api';
 
             // Leaflet map;
             let map;
@@ -88,20 +88,27 @@ define
 
             // Retreiving a scope for a given user
             const getZoneID = async token => {
-                const path = '/zones/';
+                // const path = '/zones/';
 
-                const headers = new Headers({ 'Authorization': 'Bearer ' + token });
+                // const headers = new Headers({ 'Authorization': 'Bearer ' + token });
 
-                const requestOptions = {
-                    method: 'GET',
-                    headers,
-                    redirect: 'follow'
-                };
+                // const requestOptions = {
+                //     method: 'GET',
+                //     headers,
+                //     redirect: 'follow'
+                // };
 
-                return await fetch(host.concat(path), requestOptions)
-                    .then(response => response.json())
-                    .then(result => { return result.contents[0].zone_id })
-                    .catch(error => console.log('error', error));
+                // return await fetch(host.concat(path), requestOptions)
+                //     .then(response => response.json())
+                //     .then(result => { return result.contents[0].zone_id })
+                //     .catch(error => console.log('error', error));
+
+                const path = '/zoneID?token=';
+
+                const rawResponse = await fetch(host.concat(path) + token, { method: 'GET' })
+                const data = await rawResponse.json();
+                console.info(data);
+                return data['zone_id'];
             }
 
             // Loads Leaflet with Mapbox map
@@ -120,7 +127,7 @@ define
                             .then(zoneID => {
                                 console.info(zoneID);
 
-                                
+
                             })
                             // Load leaflet Map
 
