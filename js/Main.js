@@ -22,7 +22,9 @@ define
                 console.info("Widget is running!");
 
                 widget.body.innerHTML = '';
-                widget.body.appendChild(DataLoader.displayPopup());
+                const popup = DataLoader.displayPopup();
+                widget.body.appendChild(popup);
+                widget.body.removeChild(popup);
 
                 const container = document.createElement('div');
                 const map = document.createElement('div');
