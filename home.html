@@ -48,9 +48,7 @@
             const rawResponse = await fetch(address, {
                 method: 'POST',
                 body,
-                headers: {
-                    'Host': 'https://api.vianova.dev'
-                }
+                headers
             });
 
             const data = await rawResponse.json();
