@@ -26,34 +26,34 @@
     <!-- <script type="text/javascript" src="http://uwa.netvibes.com/lib/c/UWA/js/UWA_Standalone_Alone.js"></script> -->
 
     <script>
-        (async () => {
-            let host = 'https://vianova-tm.herokuapp.com/api';
-            let path = '/token'
-            const address = host.concat(path);
+        // (async () => {
+        //     let host = 'https://vianova-tm.herokuapp.com/api';
+        //     let path = '/token'
+        //     const address = host.concat(path);
 
-            let rawResponse = await fetch(address, { method: 'GET' });
-            let data = await rawResponse.json();
-            console.log(data['access_token']);
+        //     let rawResponse = await fetch(address, { method: 'GET' });
+        //     let data = await rawResponse.json();
+        //     console.log(data['access_token']);
 
-            path = '/zoneID?token=';
+        //     path = '/zoneID?token=';
 
-                // const headers = new Headers({ 'Authorization': 'Bearer ' + data['access_token'] });
+        //         // const headers = new Headers({ 'Authorization': 'Bearer ' + data['access_token'] });
 
-                // const requestOptions = {
-                //     method: 'GET'
-                //     // headers,
-                //     // redirect: 'follow'
-                // };
+        //         // const requestOptions = {
+        //         //     method: 'GET'
+        //         //     // headers,
+        //         //     // redirect: 'follow'
+        //         // };
 
-                // fetch(host.concat(path) + data['access_token'])
-                //     .then(response => response.json())
-                //     .then(result => console.log(result.zone_id))
-                //     .catch(error => console.log('error', error));
+        //         // fetch(host.concat(path) + data['access_token'])
+        //         //     .then(response => response.json())
+        //         //     .then(result => console.log(result.zone_id))
+        //         //     .catch(error => console.log('error', error));
 
-                rawResponse = await fetch(host.concat(path) + data['access_token'], { method: 'GET' })
-                data = await rawResponse.json();
-                console.info("INDEX: " + data['zone_id']);
-        })();
+        //         rawResponse = await fetch(host.concat(path) + data['access_token'], { method: 'GET' })
+        //         data = await rawResponse.json();
+        //         console.info("INDEX: " + data['zone_id']);
+        // })();
 
         var host = 'https://rimberse.github.io',       // URL of server
             project = '/Vianova-TM-widget';            // folder referencing to your project resources
