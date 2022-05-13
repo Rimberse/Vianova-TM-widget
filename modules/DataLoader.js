@@ -99,7 +99,6 @@ define
                 const rawResponse = await fetch(address, { method: 'GET' });
                 const data = await rawResponse.json();
                 console.log(data);
-                data.then(a => console.log(a));
                 return data['access_token'];
             }
 
@@ -111,7 +110,9 @@ define
                     return getCredentials();
                 },
                 displayMap: function () {
-                    console.info(getToken());
+                    getToken()
+                    .then(token => console.info(token))
+                    .catch(error => console.log("Couldn't retrieve bearer token: " + error.message));
                 }
             };
 
