@@ -23,7 +23,6 @@ define
 
                 widget.body.innerHTML = '';
                 widget.body.appendChild(DataLoader.displayPopup());
-                DataLoader.displayCredentials();
 
                 const container = document.createElement('div');
                 widget.body.appendChild(container);

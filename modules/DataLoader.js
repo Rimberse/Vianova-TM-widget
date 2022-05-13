@@ -109,7 +109,7 @@ define
                     return getCredentials();
                 },
                 displayMap: function () {
-                    console.log(getToken());
+                    console.info(getToken());
                 }
             };
 
