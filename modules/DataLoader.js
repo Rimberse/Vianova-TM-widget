@@ -77,38 +77,44 @@ define
             // Vianova's API requests
             // Retrieves bearer token by calling Vianova's web service
             const getToken = async () => {
-                const apiHost = 'https://vianova-tm.herokuapp.com/api';
                 const path = '/token'
-                const address = apiHost.concat(path);
+                const address = host.concat(path);
 
                 const rawResponse = await fetch(address, { method: 'GET' });
                 const data = await rawResponse.json();
                 return data['access_token'];
             }
 
-            // Retreiving a scope for a given user
+            // Retreiving a zoneId for a given user
             const getZoneID = async token => {
-                // const path = '/zones/';
-
-                // const headers = new Headers({ 'Authorization': 'Bearer ' + token });
-
-                // const requestOptions = {
-                //     method: 'GET',
-                //     headers,
-                //     redirect: 'follow'
-                // };
-
-                // return await fetch(host.concat(path), requestOptions)
-                //     .then(response => response.json())
-                //     .then(result => { return result.contents[0].zone_id })
-                //     .catch(error => console.log('error', error));
-
                 const path = '/zoneID?token=';
 
                 const rawResponse = await fetch(host.concat(path) + token, { method: 'GET' })
                 const data = await rawResponse.json();
-                console.info(data);
                 return data['zone_id'];
+            }
+
+            // Retrievs GeoJSON
+            const getGeoJSON = async (token, zoneID) => {
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        Accept: 'application/json',
+                        Authorization: 'Bearer ' + token
+                    }
+                };
+
+                return await fetch(`${host}/zones/${zoneID}/`, options)
+                    .then(response => response.json())
+                    .then(async data => {
+                        // Filtering response JSON to obtain a link of JSON, containing informations
+                        return await fetch(data["detail_link"], {
+                            method: 'GET', headers: { Accept: 'application/json' }
+                        })
+                            .then(response => response.json())
+                            .then(data => data);
+                    })
+                    .catch(err => console.error(err));
             }
 
             // Loads Leaflet with Mapbox map
@@ -122,13 +128,13 @@ define
                     getToken()
                         .then(token => {
                             console.info(token);
-                            
+
                             getZoneID(token)
-                            .then(zoneID => {
-                                console.info(zoneID);
+                                .then(zoneID => {
+                                    console.info(zoneID);
 
 
-                            })
+                                })
                             // Load leaflet Map
 
                         })
