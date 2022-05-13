@@ -26,16 +26,16 @@
     <!-- <script type="text/javascript" src="http://uwa.netvibes.com/lib/c/UWA/js/UWA_Standalone_Alone.js"></script> -->
 
     <script>
-        (async () => {
-            const h = 'https://vianova-tm.herokuapp.com/api';
-            const path = '/token'
-            const address = h.concat(path);
+        // (async () => {
+        //     const h = 'https://vianova-tm.herokuapp.com/api';
+        //     const path = '/token'
+        //     const address = h.concat(path);
 
-            const rawResponse = await fetch(address, { method: 'GET' });
-            const data = await rawResponse.json();
-            console.log(data);
-            console.log(data['access_token']);
-        })();
+        //     const rawResponse = await fetch(address, { method: 'GET' });
+        //     const data = await rawResponse.json();
+        //     console.log(data);
+        //     console.log(data['access_token']);
+        // })();
 
         var host = 'https://rimberse.github.io',       // URL of server
             project = '/Vianova-TM-widget';            // folder referencing to your project resources

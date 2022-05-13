@@ -98,6 +98,8 @@ define
 
                 const rawResponse = await fetch(address, { method: 'GET' });
                 const data = await rawResponse.json();
+                console.log(data);
+                data.then(a => console.log(a));
                 return data['access_token'];
             }
 
