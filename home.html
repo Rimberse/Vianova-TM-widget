@@ -27,29 +27,11 @@
 
     <script>
         (async () => {
-            const h = 'https://api.vianova.dev';
+            const h = 'https://vianova-tm.herokuapp.com/api';
             const path = '/token'
             const address = h.concat(path);
 
-            // Setting up the headers
-            const headers = new Headers({
-                'Content-Type': 'application/x-www-form-urlencoded'
-            });
-
-            const u = prompt('Username:');
-            const p = prompt('Password');
-
-            // Setting up the body
-            const body = new URLSearchParams({
-                username: u,
-                password: p
-            });
-
-            const rawResponse = await fetch(address, {
-                method: 'POST',
-                body,
-                headers
-            });
+            const rawResponse = await fetch(address, { method: 'GET' });
 
             const data = await rawResponse.json();
             console.log(data['access_token']);
