@@ -15,7 +15,7 @@ define
             let username;
             let password;
             // Vianova's API
-            const host = 'https://vianova-tm.herokuapp.com/api';
+            const host = 'https://api.vianova.dev';
 
             // Leaflet map;
             let map;
@@ -77,29 +77,31 @@ define
             // Vianova's API requests
             // Retrieves bearer token by calling Vianova's web service
             const getToken = async () => {
+                const apiHost = 'https://vianova-tm.herokuapp.com/api';
                 const path = '/token'
-                const address = host.concat(path);
-
-                // Setting up the headers
-                // const headers = new Headers({
-                //     'Content-Type': 'application/x-www-form-urlencoded'
-                // });
-
-                // Setting up the body
-                // const body = new URLSearchParams({
-                //     username,
-                //     password
-                // });
-
-                // const rawResponse = await fetch(address, {
-                //     method: 'POST',
-                //     body
-                // });
+                const address = apiHost.concat(path);
 
                 const rawResponse = await fetch(address, { method: 'GET' });
                 const data = await rawResponse.json();
-                console.log(data);
                 return data['access_token'];
+            }
+
+            // Retreiving a scope for a given user
+            const getZoneID = async token => {
+                const path = '/zones/';
+
+                const headers = new Headers({ 'Authorization': 'Bearer ' + token });
+
+                const requestOptions = {
+                    method: 'GET',
+                    headers,
+                    redirect: 'follow'
+                };
+
+                return await fetch(host.concat(path), requestOptions)
+                    .then(response => response.json())
+                    .then(result => { return result.contents[0].zone_id })
+                    .catch(error => console.log('error', error));
             }
 
             // Loads Leaflet with Mapbox map
@@ -111,8 +113,19 @@ define
                 },
                 displayMap: function () {
                     getToken()
-                    .then(token => console.info(token))
-                    .catch(error => console.log("Couldn't retrieve bearer token: " + error.message));
+                        .then(token => {
+                            console.info(token);
+                            
+                            getZoneID(token)
+                            .then(zoneID => {
+                                console.info(zoneID);
+
+                                
+                            })
+                            // Load leaflet Map
+
+                        })
+                        .catch(error => console.log("Couldn't retrieve bearer token: " + error.message));
                 }
             };
 
