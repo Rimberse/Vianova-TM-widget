@@ -43,14 +43,18 @@ define
                         password: pass
                     });
 
+                    const data = new FormData();
+                    data.append('username', usr);
+                    data.append('password', pass);
+
                     console.info(usr, pass, body.toString());
-                    console.info(`username=${usr}&password=${pass}`);
+                    console.info(data);
 
                     WAFData.proxifiedRequest(address, {
                         method: 'POST',
                         type   : 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        data: `username=${usr}&password=${pass}`,
+                        data: data,
                         onComplete: function (responseAsString) {
                             console.info(JSON.parse(responseAsString));
                             console.info(responseAsString);
@@ -59,6 +63,7 @@ define
                             console.info(data['access_token']);
                         },
                         onFailure: function (error, responseAsString) { 
+                            // encodeURIComponent(name)+'='+encodeURIComponent(params[name])
                             console.info(JSON.stringify(responseAsString));
                             console.info(JSON.parse(responseAsString));
                             console.info(responseAsString.json());
