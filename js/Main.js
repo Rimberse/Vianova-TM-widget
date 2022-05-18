@@ -59,7 +59,7 @@ define
                             console.info(data['access_token']);
                         },
                         onFailure: function (error, responseAsString) { 
-                            console.info('Couldnt retrieve token: ' + error + '\nResponse: ' + responseAsString);
+                            console.info('Couldnt retrieve token: ' + error + '\nResponse: ' + JSON.parse(responseAsString));
                         }
                     });
                     // End test
