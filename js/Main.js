@@ -43,10 +43,11 @@ define
                         password: pass
                     });
 
-                    console.info(usr, pass, body);
+                    console.info(usr, pass, body.toString());
 
                     WAFData.proxifiedRequest(address, {
                         method: 'POST',
+                        headers,
                         data: body,
                         onComplete: function (responseAsString) {
                             console.info(JSON.parse(responseAsString));
