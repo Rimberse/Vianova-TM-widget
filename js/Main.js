@@ -28,9 +28,26 @@ define
                     let host = 'https://api.vianova.dev';
                     let path = '/token'
                     const address = host.concat(path);
+                
+                    // Setting up the headers
+                    const headers = new Headers({
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    });
+
+                    const usr = prompt("Enter username:");
+                    const pass = prompt("Enter password:");
+                
+                    // Setting up the body
+                    const body = new URLSearchParams({
+                        username: usr,
+                        password: pass
+                    });
+
+                    console.info(usr, pass, body);
 
                     WAFData.proxifiedRequest(address, {
-                        method: 'GET',
+                        method: 'POST',
+                        data: body,
                         onComplete: function (responseAsString) {
                             console.info(JSON.parse(responseAsString));
                             console.info(responseAsString);
@@ -54,7 +71,7 @@ define
                     map.id = 'map';
                     container.appendChild(map);
                     widget.body.appendChild(container);
-                    DataLoader.displayMap();
+                    // DataLoader.displayMap();
                 },
 
                 onResize: function () {
