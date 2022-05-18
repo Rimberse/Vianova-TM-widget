@@ -44,11 +44,13 @@ define
                     });
 
                     console.info(usr, pass, body.toString());
+                    console.info(`username=${usr}&password=${pass}`);
 
                     WAFData.proxifiedRequest(address, {
                         method: 'POST',
-                        headers,
-                        data: `?username=${usr}&password=${pass}`,
+                        type   : 'json',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        data: `username=${usr}&password=${pass}`,
                         onComplete: function (responseAsString) {
                             console.info(JSON.parse(responseAsString));
                             console.info(responseAsString);
