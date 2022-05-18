@@ -56,7 +56,7 @@ define
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         data: encodeURIComponent('username') + '=' + encodeURIComponent(usr) + '&' + encodeURIComponent('password') + '=' + encodeURIComponent(pass),
                         onComplete: function (responseAsString) {
-                            console.info(JSON.parse(responseAsString));
+                            // console.info(JSON.parse(responseAsString));
                             console.info(responseAsString);
                             let data = (async () => await rawResponse.json())();
                             console.info(data);
