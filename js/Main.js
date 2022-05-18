@@ -48,13 +48,13 @@ define
                     data.append('password', pass);
 
                     console.info(usr, pass, body.toString());
-                    console.info(data);
+                    console.info(encodeURIComponent('username') + '=' + encodeURIComponent(usr) + '&' + encodeURIComponent('password') + '=' + encodeURIComponent(pass));
 
                     WAFData.proxifiedRequest(address, {
                         method: 'POST',
                         type   : 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        data: data,
+                        data: encodeURIComponent('username') + '=' + encodeURIComponent(usr) + '&' + encodeURIComponent('password') + '=' + encodeURIComponent(pass),
                         onComplete: function (responseAsString) {
                             console.info(JSON.parse(responseAsString));
                             console.info(responseAsString);
