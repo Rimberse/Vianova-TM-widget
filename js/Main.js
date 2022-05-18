@@ -34,12 +34,12 @@ define
                         onComplete: function (responseAsString) {
                             console.info(JSON.parse(responseAsString));
                             console.info(responseAsString);
-                            let data = await rawResponse.json();
+                            let data = (async () => await rawResponse.json())();
                             console.info(data);
                             console.info(data['access_token']);
                         },
                         onFailure: function (error, responseAsString) { 
-                            console.info('Couldnt retrieve token');
+                            console.info('Couldnt retrieve token: ' + error + '\nResponse: ' + responseAsString);
                         }
                     });
                     // End test
