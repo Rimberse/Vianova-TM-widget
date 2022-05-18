@@ -48,7 +48,7 @@ define
                     WAFData.proxifiedRequest(address, {
                         method: 'POST',
                         headers,
-                        data: `username=${usr}&password=${pass}`,
+                        data: `?username=${usr}&password=${pass}`,
                         onComplete: function (responseAsString) {
                             console.info(JSON.parse(responseAsString));
                             console.info(responseAsString);
