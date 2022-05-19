@@ -64,7 +64,10 @@ define
                         method: 'POST',
                         type   : 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        data: encodeURIComponent('username') + '=' + encodeURIComponent(usr) + '&' + encodeURIComponent('password') + '=' + encodeURIComponent(pass),
+                        data: {
+                            username: usr,
+                            password: pass
+                        },
                         onComplete: function (responseAsString) {
                             console.info(responseAsString);
                             let data = (async () => await rawResponse.json())();
