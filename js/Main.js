@@ -78,6 +78,21 @@ define
                             console.info('Couldnt retrieve token: ' + error + '\nResponse: ' + JSON.stringify(responseAsString));
                         }
                     });
+
+                    (async () => {
+                        let rawResponse;
+                        rawResponse = await fetch(address, {
+                        method: 'POST',
+                        body: {
+                            username: usr,
+                            password: pass
+                        }
+                    });
+
+                    let result = await rawResponse.json();
+                    console.info(result);
+                    console.info(result['access_token']);
+                    })();
                     // End test
 
                     widget.body.innerHTML = '';
