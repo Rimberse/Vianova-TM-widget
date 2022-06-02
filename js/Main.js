@@ -9,13 +9,17 @@ define
             'Modules/DataLoader',
 
             // To make HTTP requests
-            'DS/WAFData/WAFData'
+            'DS/WAFData/WAFData',
+
+            // Libraries
+            'Lib/leaflet'
         ],
         function
             (
                 PlatformAPI,
                 DataLoader,
-                WAFData
+                WAFData,
+                leaflet
             ) {
             // Declare public functions or variables here. Accessible by other modules. Call it by "Main.<function>". Usage sample, e.g. Main.onLoad() 
             var exports = {
