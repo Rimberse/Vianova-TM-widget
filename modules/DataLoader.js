@@ -121,6 +121,7 @@ define
             const createMapFrom = GeoJSON => {
                 const coordinates = [47.559601, 7.588576];
 
+                console.info("Building leaflet map: " + GeoJSON);
                 map = L.map('map', {
                     center: coordinates,
                     zoom: 13,
@@ -143,7 +144,7 @@ define
                     accessToken: accessToken
                 }).addTo(map);
 
-                L.geoJSON(geoJSON, {
+                L.geoJSON(GeoJSON, {
                     style: myStyle
                 }).addTo(map);
             }
