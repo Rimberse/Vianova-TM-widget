@@ -62,7 +62,6 @@ define
                     accessToken = token;
                     username = usr;
                     password = pass;
-                    widget.body.removeChild(document.getElementById("popup"));
                 };
 
                 popup.appendChild(accessTokenDiv);
@@ -156,6 +155,7 @@ define
                     return getCredentials();
                 },
                 displayMap: function () {
+                    accessToken = prompt("Please enter an access token");
                     getToken()
                         .then(token => {
                             console.info(token);
