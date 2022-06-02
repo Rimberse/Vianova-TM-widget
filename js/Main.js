@@ -94,8 +94,8 @@ define
 
                     widget.body.innerHTML = '';
                     const popup = DataLoader.displayPopup();
-                    widget.body.appendChild(popup);
-                    widget.body.removeChild(popup);
+                    // widget.body.appendChild(popup);
+                    // widget.body.removeChild(popup);
 
                     const container = document.createElement('div');
                     const map = document.createElement('div');
