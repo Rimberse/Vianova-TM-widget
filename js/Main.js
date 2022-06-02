@@ -25,74 +25,67 @@ define
                     console.info("Widget is running!");
 
                     // Test
-                    let host = 'https://api.vianova.dev';
-                    let path = '/token'
-                    const address = host.concat(path);
+                    // let host = 'https://api.vianova.dev';
+                    // let path = '/token'
+                    // const address = host.concat(path);
                 
-                    // Setting up the headers
-                    const headers = new Headers({
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    });
+                    // // Setting up the headers
+                    // const headers = new Headers({
+                    //     'Content-Type': 'application/x-www-form-urlencoded'
+                    // });
 
-                    const usr = prompt("Enter username:");
-                    const pass = prompt("Enter password:");
+                    // const usr = prompt("Enter username:");
+                    // const pass = prompt("Enter password:");
                 
-                    // Setting up the body
-                    const body = new URLSearchParams({
-                        username: usr,
-                        password: pass
-                    });
+                    // // Setting up the body
+                    // const body = new URLSearchParams({
+                    //     username: usr,
+                    //     password: pass
+                    // });
 
-                    const data = new FormData();
-                    data.append('username', usr);
-                    data.append('password', pass);
+                    // const data = new FormData();
+                    // data.append('username', usr);
+                    // data.append('password', pass);
 
-                    console.info(usr, pass, body.toString());
-                    console.info(encodeURIComponent('username') + '=' + encodeURIComponent(usr) + '&' + encodeURIComponent('password') + '=' + encodeURIComponent(pass));
+                    // console.info(usr, pass, body.toString());
+                    // console.info(encodeURIComponent('username') + '=' + encodeURIComponent(usr) + '&' + encodeURIComponent('password') + '=' + encodeURIComponent(pass));
 
-                    WAFData.proxifiedRequest('https://httpbin.org/get', {
-                        method: 'GET',
-                        onComplete: function (responseAsString) {
-                            console.info(responseAsString);
-                        },
-                        onFailure: function (error, responseAsString) {
-                            console.info('Couldnt retrieve info: ' + error + '\nResponse: ' + JSON.stringify(responseAsString));
-                        }
-                    });
+                    // WAFData.proxifiedRequest('https://httpbin.org/get', {
+                    //     method: 'GET',
+                    //     onComplete: function (responseAsString) {
+                    //         console.info(responseAsString);
+                    //     },
+                    //     onFailure: function (error, responseAsString) {
+                    //         console.info('Couldnt retrieve info: ' + error + '\nResponse: ' + JSON.stringify(responseAsString));
+                    //     }
+                    // });
 
-                    WAFData.proxifiedRequest(address, {
-                        method: 'POST',
-                        type   : 'json',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        data: {
-                            username: usr,
-                            password: pass
-                        },
-                        onComplete: function (responseAsString) {
-                            console.info(responseAsString);
-                            let data = (async () => await rawResponse.json())();
-                            console.info(data);
-                            console.info(data['access_token']);
-                        },
-                        onFailure: function (error, responseAsString) {
-                            console.info('Couldnt retrieve token: ' + error + '\nResponse: ' + JSON.stringify(responseAsString));
-                        }
-                    });
+                    // WAFData.proxifiedRequest(address, {
+                    //     method: 'POST',
+                    //     type   : 'json',
+                    //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    //     data,
+                    //     onComplete: function (responseAsString) {
+                    //         console.info(responseAsString);
+                    //         let data = (async () => await rawResponse.json())();
+                    //         console.info(data);
+                    //         console.info(data['access_token']);
+                    //     },
+                    //     onFailure: function (error, responseAsString) {
+                    //         console.info('Couldnt retrieve token: ' + error + '\nResponse: ' + JSON.stringify(responseAsString));
+                    //     }
+                    // });
 
-                    (async () => {
-                        let rawResponse;
-                        rawResponse = await fetch(address, {
-                        method: 'POST',
-                        body: {
-                            username: usr,
-                            password: pass
-                        }
-                    });
+                    // (async () => {
+                    //     const rawResponse = await fetch(address, {
+                    //         method: 'POST',
+                    //         body
+                    //     });
 
-                    let result = await rawResponse.json();
-                    console.info(result);
-                    console.info(result['access_token']);
-                    })();
+                    //     let result = await rawResponse.json();
+                    //     console.info(result);
+                    //     console.info(result['access_token']);
+                    // })();
                     // End test
 
                     widget.body.innerHTML = '';
@@ -105,7 +98,7 @@ define
                     map.id = 'map';
                     container.appendChild(map);
                     widget.body.appendChild(container);
-                    // DataLoader.displayMap();
+                    DataLoader.displayMap();
                 },
 
                 onResize: function () {

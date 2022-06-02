@@ -8,7 +8,7 @@ define
             (
 
             ) {
-            console.info('Data loader is loaded');
+            console.info('Data loader has been loaded');
 
             // global variables (widget, UWA, document)
             let accessToken;

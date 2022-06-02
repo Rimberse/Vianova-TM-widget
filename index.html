@@ -17,6 +17,9 @@
     <meta http-equiv="expires" content="0">
     <!-- End of FOR DEV PURPOSE ONLY -->
 
+    <link rel="stylesheet" href="./lib/leaflet/leaflet.css" />
+    <script src="./lib/leaflet/leaflet.js"></script>
+
     <!-- Leaflet CSS file -->
     <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -35,6 +38,39 @@
     <!-- <script type="text/javascript" src="http://uwa.netvibes.com/lib/c/UWA/js/UWA_Standalone_Alone.js"></script> -->
 
     <script>
+        // const div = document.createElement('div');
+        // div.id = "map";
+
+        // let h = 'https://api.vianova.dev';
+        // let path = '/token'
+        // const address = h.concat(path);
+
+        // // Setting up the headers
+        // const headers = new Headers({
+        //     'Content-Type': 'application/x-www-form-urlencoded'
+        // });
+
+        // const usr = prompt("Enter username:");
+        // const pass = prompt("Enter password:");
+
+        // // Setting up the body
+        // const body = new URLSearchParams({
+        //     username: usr,
+        //     password: pass
+        // });
+
+        // (async () => {
+        //     const rawResponse = await fetch(address, {
+        //         method: 'POST',
+        //         body
+        //     });
+
+        //     let result = await rawResponse.json();
+        //     console.info(result);
+        //     console.info(result['access_token']);
+        // })();
+
+
         // (async () => {
         //     let host = 'https://vianova-tm.herokuapp.com/api';
         //     let path = '/token'
@@ -64,8 +100,8 @@
         //         console.info("INDEX: " + data['zone_id']);
         // })();
 
-        var host = 'https://rimberse.github.io',       // URL of server
-            project = '/Vianova-TM-widget';            // folder referencing to your project resources
+        var host = 'https://tourmaline-souffle-ae39d0.netlify.app',       // URL of server
+            project = '';            // folder referencing to your project resources
 
         // AMD loader setting. For complete documentation, refer to https://requirejs.org/docs/whyamd.html
         require.config({
@@ -108,7 +144,7 @@
 </head>
 
 <body>
-    
+    <div id="map"></div>
 </body>
 
 </html>
