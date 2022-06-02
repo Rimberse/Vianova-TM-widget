@@ -62,6 +62,7 @@ define
                     accessToken = token;
                     username = usr;
                     password = pass;
+                    widget.body.removeChild(document.getElementById("popup"));
                 };
 
                 popup.appendChild(accessTokenDiv);
