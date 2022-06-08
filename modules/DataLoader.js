@@ -78,9 +78,21 @@ define
             // Retrieves bearer token by calling Vianova's web service
             const getToken = async () => {
                 const path = '/token'
-                const address = host.concat(path);
+                const address = 'https://api.vianova.dev'.concat(path);
 
-                const rawResponse = await fetch(address, { method: 'GET' });
+                const headers = new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                });
+            
+                const body = new URLSearchParams({
+                    username: prompt("Please enter username:"),
+                    password: prompt("Please enter password:")
+                });
+
+                const rawResponse = await fetch(address, { 
+                    method: 'POST',
+                    body
+                });
                 const data = await rawResponse.json();
                 return data['access_token'];
             }
@@ -155,7 +167,7 @@ define
                     return getCredentials();
                 },
                 displayMap: function () {
-                    accessToken = prompt("Please enter an access token");
+                    // accessToken = prompt("Please enter an access token");
                     getToken()
                         .then(token => {
                             console.info(token);
@@ -5781,7 +5793,7 @@ define
                                 ]
                             }
 
-                            createMapFrom(geoJSON);
+                            // createMapFrom(geoJSON);
                         })
                         .catch(error => console.log("Couldn't retrieve bearer token: " + error.message));
                 }
