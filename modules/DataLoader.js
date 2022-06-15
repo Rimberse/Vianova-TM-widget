@@ -215,6 +215,8 @@ define
                                                         selectDiv.appendChild(option);
                                                     });
 
+                                                    const filterBy = tags[0];
+
                                                     const geoJSON = {
                                                         crs: "EPSG:3414",
                                                         type: "FeatureCollection",
