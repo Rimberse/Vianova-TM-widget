@@ -146,10 +146,6 @@ define
                 const rawResponse = await fetch(path, options);
                 const data = await rawResponse.json();
                 return data.sort();
-                // return await fetch(path, options)
-                //     .then(response => response.json())
-                //     .then(data => data.sort())
-                //     .catch(err => console.error(err));
             }
 
             // Loads Leaflet with Mapbox map

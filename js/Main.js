@@ -101,6 +101,12 @@ define
                     const map = document.createElement('div');
                     map.id = 'map';
                     container.appendChild(map);
+
+                    const tags = document.createElement('select');
+                    tags.id = 'tags';
+                    tags.name = 'tags';
+                    container.appendChild(tags);
+                    
                     widget.body.appendChild(container);
                     DataLoader.displayMap();
                 },
