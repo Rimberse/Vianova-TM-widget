@@ -112,20 +112,14 @@ define
                 };
 
                 const rawResponse = await fetch(host.concat(path), requestOptions);
-                console.info(rawResponse);
                 const data = await rawResponse.json();
-                console.info(data);
                 return data.contents[0].zone_id;
-
-                // const path = '/zoneID?token=';
-
-                // const rawResponse = await fetch(host.concat(path) + token, { method: 'GET' })
-                // const data = await rawResponse.json();
-                // return data['zone_id'];
             }
 
             // Retrievs GeoJSON
             const getGeoJSON = async (token, zoneID) => {
+                const path = `${host}/zones/${zoneID}/`;
+
                 const options = {
                     method: 'GET',
                     headers: {
@@ -134,17 +128,26 @@ define
                     }
                 };
 
-                return await fetch(`${host}/zones/${zoneID}/`, options)
-                    .then(response => response.json())
-                    .then(async data => {
-                        // Filtering response JSON to obtain a link of JSON, containing informations
-                        return await fetch(data["detail_link"], {
-                            method: 'GET', headers: { Accept: 'application/json' }
-                        })
-                            .then(response => response.json())
-                            .then(data => data);
-                    })
-                    .catch(err => console.error(err));
+                const rawResponse = await fetch(path, options);
+                const data = await rawResponse.json();
+                const response = await fetch(data["detail_link"], {
+                    method: 'GET', headers: { Accept: 'application/json' }
+                });
+                const geoJSON = response.json;
+                console.info(geoJSON);
+                return geoJSON;
+
+                // return await fetch(`${host}/zones/${zoneID}/`, options)
+                //     .then(response => response.json())
+                //     .then(async data => {
+                //         // Filtering response JSON to obtain a link of JSON, containing informations
+                //         return await fetch(data["detail_link"], {
+                //             method: 'GET', headers: { Accept: 'application/json' }
+                //         })
+                //             .then(response => response.json())
+                //             .then(data => data);
+                //     })
+                //     .catch(err => console.error(err));
             }
 
             // Loads Leaflet with Mapbox map
@@ -193,6 +196,11 @@ define
                             getZoneID(token)
                                 .then(zoneID => {
                                     console.info(zoneID);
+
+                                    getGeoJSON(token, zoneID)
+                                        .then(geoJSON => {
+                                            console.info(geoJSON);
+                                        })
 
                                     // Load leaflet Map
                                     const geoFeature = {
