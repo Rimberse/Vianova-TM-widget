@@ -15,7 +15,8 @@ define
             let username;
             let password;
             // Vianova's API
-            const host = 'https://vianova-tm.herokuapp.com/api';
+            // const host = 'https://vianova-tm.herokuapp.com/api';
+            const host = 'https://api.vianova.dev';
 
             // Leaflet map;
             let map;
@@ -78,7 +79,7 @@ define
             // Retrieves bearer token by calling Vianova's web service
             const getToken = async () => {
                 const path = '/token'
-                const address = 'https://api.vianova.dev'.concat(path);
+                const address = host.concat(path);
 
                 const headers = new Headers({
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -5793,7 +5794,7 @@ define
                                 ]
                             }
 
-                            // createMapFrom(geoJSON);
+                            createMapFrom(geoJSON);
                         })
                         .catch(error => console.log("Couldn't retrieve bearer token: " + error.message));
                 }
