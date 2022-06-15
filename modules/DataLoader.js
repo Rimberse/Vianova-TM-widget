@@ -133,7 +133,7 @@ define
                 const response = await fetch(data["detail_link"], {
                     method: 'GET', headers: { Accept: 'application/json' }
                 });
-                const geoJSON = response.json;
+                const geoJSON = response.json();
                 console.info(geoJSON);
                 return geoJSON;
 
