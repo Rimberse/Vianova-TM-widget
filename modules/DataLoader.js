@@ -100,11 +100,28 @@ define
 
             // Retreiving a zoneId for a given user
             const getZoneID = async token => {
-                const path = '/zoneID?token=';
+                const path = '/zones/';
 
-                const rawResponse = await fetch(host.concat(path) + token, { method: 'GET' })
+                const headers = new Headers({
+                    'Authorization': 'Bearer ' + token,
+                });
+
+                const requestOptions = {
+                    method: 'GET',
+                    headers
+                };
+
+                const rawResponse = await fetch(host.concat(path), requestOptions);
+                console.info(rawResponse);
                 const data = await rawResponse.json();
-                return data['zone_id'];
+                console.info(data);
+                return data.contents[0].zone_id;
+
+                // const path = '/zoneID?token=';
+
+                // const rawResponse = await fetch(host.concat(path) + token, { method: 'GET' })
+                // const data = await rawResponse.json();
+                // return data['zone_id'];
             }
 
             // Retrievs GeoJSON
