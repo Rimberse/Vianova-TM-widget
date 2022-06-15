@@ -211,7 +211,7 @@ define
                                                         selectDiv.appendChild(option);
                                                     });
 
-                                                    const filterBy = tags[0];
+                                                    const filterBy = tags[2];
 
                                                     const geoJSON = {
                                                         crs: "EPSG:3414",
