@@ -219,7 +219,7 @@ define
                                                         features: details["geo_features"].filter(feature => feature.tags.includes(filterBy)).map(({ geo_feature_id, geojson, properties }) => ({ type: "Feature", id: geo_feature_id, geometry: geojson, properties }))
                                                     };
 
-                                                    createVianovaMapFrom(geoJSON);
+                                                    createMapFrom(geoJSON);
                                                 })
                                         })
 
