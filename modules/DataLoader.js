@@ -22,7 +22,6 @@ define
             let map;
             // Application's state, used to prevent from calling the web service twice
             const state = {};
-
             // Private functions. Not accessible by other modules. Accesible within this module only
 
             // Creates a popup to retrieve credentials
@@ -116,7 +115,7 @@ define
                 return data.contents[0].zone_id;
             }
 
-            // Retrievs GeoJSON
+            // Retrieves GeoFeatures
             const getGeoJSON = async (token, zoneID) => {
                 const path = `${host}/zones/${zoneID}/`;
 
@@ -133,20 +132,23 @@ define
                 const response = await fetch(data["detail_link"], {
                     method: 'GET', headers: { Accept: 'application/json' }
                 });
-                const geoJSON = response.json();
-                console.info(geoJSON);
-                return geoJSON;
 
-                // return await fetch(`${host}/zones/${zoneID}/`, options)
+                const geoJSON = response.json();
+                return geoJSON;
+            }
+
+            // Retrieves GeoFeature tags
+            const getGeoFeatureTags = async (token, zoneID) => {
+                const path = `${host}/zones/${zoneID}/geo_features/tags/`;
+
+                const options = { method: 'GET', headers: { Authorization: 'Bearer ' + token } };
+
+                const rawResponse = await fetch(path, options);
+                const data = await rawResponse.json();
+                return data.sort();
+                // return await fetch(path, options)
                 //     .then(response => response.json())
-                //     .then(async data => {
-                //         // Filtering response JSON to obtain a link of JSON, containing informations
-                //         return await fetch(data["detail_link"], {
-                //             method: 'GET', headers: { Accept: 'application/json' }
-                //         })
-                //             .then(response => response.json())
-                //             .then(data => data);
-                //     })
+                //     .then(data => data.sort())
                 //     .catch(err => console.error(err));
             }
 
@@ -200,6 +202,11 @@ define
                                     getGeoJSON(token, zoneID)
                                         .then(geoJSON => {
                                             console.info(geoJSON);
+
+                                            getGeoFeatureTags(token, zoneID)
+                                                .then(tags => {
+                                                    console.info(tags);
+                                                })
                                         })
 
                                     // Load leaflet Map
