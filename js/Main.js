@@ -4,6 +4,7 @@ define
         [
             // 3DEXPERIENCE Cloud Platform JS modules 
             'DS/PlatformAPI/PlatformAPI',
+            'DS/DataDragAndDrop/DataDragAndDrop',
 
             // Module which requests data and loads them into the application
             'Modules/DataLoader',
@@ -17,6 +18,7 @@ define
         function
             (
                 PlatformAPI,
+                DataDragAndDrop,
                 DataLoader,
                 WAFData,
                 leaflet
