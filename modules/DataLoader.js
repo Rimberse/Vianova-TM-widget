@@ -204,6 +204,8 @@ define
                 //     _this.PlatformAPI.unsubscribe('3DEXPERIENCity.Add3DPOIReturn');
                 // });
 
+               console.log(geoJSON);
+
                 // Input
                 PlatformAPI.publish('xCity.addData', {
                     "messageId": "fb5c5587-ba4e-4db4-9dfd-7b54338dd448",
