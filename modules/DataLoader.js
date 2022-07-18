@@ -221,6 +221,12 @@ define
                         "9MlIiKCA2IIyE5kHL31a"
                     ]
                 });
+
+               PlatformAPI.subscribe('xCity.addData', rs => {
+                  console.log("got response");
+                  console.log('xCity.addData', rs);
+                  PlatformAPI.unsubscribe('xCity.addData');
+               });
             }
 
             // Helper functions to receive all API result before funneled further to each individual topic function
