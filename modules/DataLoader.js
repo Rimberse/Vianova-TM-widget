@@ -2,11 +2,26 @@ define
     (
         "Modules/DataLoader",
         [
-            'DS/i3DXCompassServices/i3DXCompassServices'
+            // 3DEXPERIENCE Cloud Platform JS modules 
+            'DS/PlatformAPI/PlatformAPI',
+            'DS/DataDragAndDrop/DataDragAndDrop',
+
+            // Compass services
+            'DS/i3DXCompassServices/i3DXCompassServices',
+
+            // To make HTTP requests
+            'DS/WAFData/WAFData',
+
+            // Libraries
+            'Lib/leaflet'
         ],
         function
             (
-                i3DXCompassServices
+               PlatformAPI,
+               DataDragAndDrop,
+               i3DXCompassServices,
+               WAFData,
+               leaflet
             ) {
             console.info('Data loader has been loaded');
 
