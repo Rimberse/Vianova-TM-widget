@@ -2,29 +2,26 @@ define
     (
         'Widget/js/Main',
         [
+            // 3DEXPERIENCE Cloud Platform JS modules 
             'DS/PlatformAPI/PlatformAPI',
             'DS/DataDragAndDrop/DataDragAndDrop',
 
-            // Compass services
-            'DS/i3DXCompassServices/i3DXCompassServices',
+            // Module which requests data and loads them into the application
+            'Modules/DataLoader',
 
             // To make HTTP requests
             'DS/WAFData/WAFData',
 
             // Libraries
-            'Lib/leaflet',
-
-            // Module which requests data and loads them into the application
-            'Modules/DataLoader'
+            'Lib/leaflet'
         ],
         function
             (
                 PlatformAPI,
                 DataDragAndDrop,
-                i3DXCompassServices,
+                DataLoader,
                 WAFData,
-                leaflet,
-                DataLoader
+                leaflet
             ) {
             // Declare public functions or variables here. Accessible by other modules. Call it by "Main.<function>". Usage sample, e.g. Main.onLoad() 
             var exports = {
