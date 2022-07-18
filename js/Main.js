@@ -2,11 +2,28 @@ define
     (
         'Widget/js/Main',
         [
+            'DS/PlatformAPI/PlatformAPI',
+            'DS/DataDragAndDrop/DataDragAndDrop',
+
+            // Compass services
+            'DS/i3DXCompassServices/i3DXCompassServices',
+
+            // To make HTTP requests
+            'DS/WAFData/WAFData',
+
+            // Libraries
+            'Lib/leaflet',
+
             // Module which requests data and loads them into the application
             'Modules/DataLoader'
         ],
         function
             (
+                PlatformAPI,
+                DataDragAndDrop,
+                i3DXCompassServices,
+                WAFData,
+                leaflet,
                 DataLoader
             ) {
             // Declare public functions or variables here. Accessible by other modules. Call it by "Main.<function>". Usage sample, e.g. Main.onLoad() 
