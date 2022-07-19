@@ -339,10 +339,11 @@ define
                   request.data = data;
                }
 
-               console.log(WidgetManager.getSameTabWidgets());
+               // console.log(WidgetManager.getSameTabWidgets());
                // Get target city widget ID
                if (topic != 'ping' && topic != 'pair') {
-                  request.widgetId = WidgetManager.getSameTabWidgets()[0].id;
+                  // request.widgetId = WidgetManager.getSameTabWidgets()[0].id;
+                  request.widgetId = '9fgZssKA21fE7tMkU0UO';
                }
 
                console.info('xCity.' + topic, request);
@@ -424,7 +425,7 @@ define
 
                                                     // GeoJSON importation to City
                                                     setupSubscriptions();
-                                                    WidgetManager.refreshTabWidgetList();
+                                                   //  WidgetManager.refreshTabWidgetList();
 
                                                     const data = {
                                                         "crs":"EPSG:3414",
