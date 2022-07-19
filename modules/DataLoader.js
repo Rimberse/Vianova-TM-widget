@@ -3,12 +3,14 @@ define
         "Modules/DataLoader",
         [
             'DS/PlatformAPI/PlatformAPI',
-            'DS/i3DXCompassServices/i3DXCompassServices'
+            'DS/i3DXCompassServices/i3DXCompassServices',
+            'Modules/WidgetManager'
         ],
         function
             (
                PlatformAPI,
-               i3DXCompassServices
+               i3DXCompassServices,
+               WidgetManager
             ) {
             console.info('Data loader has been loaded');
 

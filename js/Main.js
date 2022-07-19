@@ -8,6 +8,7 @@ define
 
             // Module which requests data and loads them into the application
             'Modules/DataLoader',
+            'Modules/WidgetManager',
 
             // To make HTTP requests
             'DS/WAFData/WAFData',
@@ -20,6 +21,7 @@ define
                 PlatformAPI,
                 DataDragAndDrop,
                 DataLoader,
+                WidgetManager,
                 WAFData,
                 leaflet
             ) {
