@@ -155,11 +155,11 @@ define
             const setupSubscriptions = () => {
                 // unsubscribe common city topics to prevent double subscriptions
                 PlatformAPI.unsubscribe('xCity.resolve');
-                PlatformAPI.unsubscribe('xCity.reject');
+                PlatformAPI.unsubscribe('xCity.catch');
 
                 // subscribes to common city topics
-                PlatformAPI.subscribe('xCity.resolve', resolve.bind(this)); // Good API result will be funneled to "resolve" function
-                PlatformAPI.subscribe('xCity.reject', reject.bind(this)); // Bad API result will be funneled to "reject" function
+                PlatformAPI.subscribe('xCity.resolve', resolve.bind(this));   // Good API result will be funneled to "resolve" function
+                PlatformAPI.subscribe('xCity.catch', reject.bind(this));      // Bad API result will be funneled to "reject" function
             }
 
             // Imports GeoJSON to City
@@ -206,26 +206,32 @@ define
 
                console.log(geoJSON);
 
-                // Input
-                PlatformAPI.publish('xCity.addData', {
-                    "messageId": "fb5c5587-ba4e-4db4-9dfd-7b54338dd448",
-                    "publisher": "9MlIiKCA2IIyE5kHL4gO",
-                    "data": {
-                        "representation": {
-                            "id": "vianova",
-                            "name": "Vianova activity"
-                        },
-                        "geojson": geoJSON
-                    },
-                    "widgetId": [
-                        "9MlIiKCA2IIyE5kHL31a"
-                    ]
-                });
+               // To get the request widget ID: the arrow (top) dropdown button should be cliked in Chrome debugger
+               // Then City's frame should be selected (highlighted one in blue). After that enter the line command 'widget' (to see it's id among other properties)
+               // MessageId should be a unique identifier (Date.now() could be used to generate unique id)
 
-               PlatformAPI.subscribe('xCity.addData', rs => {
-                  console.log("got response");
-                  console.log('xCity.addData', rs);
-                  PlatformAPI.unsubscribe('xCity.addData');
+               // Input
+               // PlatformAPI.publish('xCity.addData', {
+               //    "messageId": "fb5c5587-ba4e-4db4-9dfd-7b54338dd448",
+               //    "publisher": widget.id,
+               //    "data": {
+               //       "representation": {
+               //          "id": "vianova",
+               //          "name": "Vianova activity"
+               //       },
+               //       "geojson": geoJSON
+               //    },
+               //    "widgetId": [
+               //       widget.id
+               //    ]
+               // });
+
+               makeAPIRequest('addData', {
+                  "representation": {
+                     "id": "vianova",
+                     "name": "Vianova activity"
+                  },
+                  "geojson": geoJSON
                });
             }
 
@@ -241,6 +247,7 @@ define
                         case 'xCity.onClick': onClick(res); break;
                         case 'xCity.onSelect': onSelect(res); break;
                         case 'xCity.onDeselect': onDeselect(res); break;
+                        case 'xCity.addData': addData(res); break;
                         // case 'xCity.<topic>': topicFunction(res); break;
                         default: console.info('No setup for ' + res.topic + ' topic');
                     }
@@ -287,6 +294,10 @@ define
                 console.info('onDeselect: ', res);
             }
 
+            function addData(res) {
+               console.info('addData: ', res);
+            }
+
             // ===== Helper functions to verify API result is valid
             const isValidResultMessage = res => {
                 if (UWA.is(res, 'object')) {
@@ -317,22 +328,22 @@ define
 
             // ===== Helper function to make request to City API for any available topic
             function makeAPIRequest(topic, data) {
-                var request = {
-                    messageId: UWA.Utils.getUUID(),
-                    publisher: widget.id
-                };
+               var request = {
+                  messageId: UWA.Utils.getUUID(),
+                  publisher: widget.id
+               };
 
-                if (UWA.is(data, 'object')) {
-                    request.data = data;
-                }
+               if (UWA.is(data, 'object')) {
+                  request.data = data;
+               }
 
-                // Get target city widget ID
-                if (topic != 'ping' && topic != 'pair') {
-                    request.widgetId = WidgetManager.getSameTabWidgets()[0].id;
-                }
+               // Get target city widget ID
+               if (topic != 'ping' && topic != 'pair') {
+                  request.widgetId = WidgetManager.getSameTabWidgets()[0].id;
+               }
 
-                console.info('xCity.' + topic, request);
-                PlatformAPI.publish('xCity.' + topic, request);
+               console.info('xCity.' + topic, request);
+               PlatformAPI.publish('xCity.' + topic, request);
             }
 
             // Loads Leaflet with Mapbox map
