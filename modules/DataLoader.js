@@ -424,6 +424,8 @@ define
 
                                                     // GeoJSON importation to City
                                                     setupSubscriptions();
+                                                    WidgetManager.refreshTabWidgetList();
+
                                                     const data = {
                                                         "crs":"EPSG:3414",
                                                         "type":"FeatureCollection",
