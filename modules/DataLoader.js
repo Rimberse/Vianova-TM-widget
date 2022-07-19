@@ -339,6 +339,7 @@ define
                   request.data = data;
                }
 
+               console.log(WidgetManager.getSameTabWidgets());
                // Get target city widget ID
                if (topic != 'ping' && topic != 'pair') {
                   request.widgetId = WidgetManager.getSameTabWidgets()[0].id;
