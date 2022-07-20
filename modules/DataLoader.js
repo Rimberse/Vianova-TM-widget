@@ -718,7 +718,7 @@ define
                                     .then(tags => {
                                        console.info(tags);
 
-                                       document.getElementById('tags').addEventListener('change', selectionHandle(token, zoneID, details));
+                                       document.getElementById('tags').addEventListener('change', selectionHandler(token, zoneID, details));
 
                                        tags.forEach(tag => {
                                           const selectDiv = document.getElementById('tags');
