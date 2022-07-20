@@ -591,7 +591,7 @@ define
             // now = now.toISOString();
 
             let tzoffset = (new Date()).getTimezoneOffset() * 60000 + 3600000;         // offset in milliseconds
-            var now = (new Date(Date.now() - tzoffset)).toISOString();                 // .slice(0, -1);
+            let now = (new Date(Date.now() - tzoffset)).toISOString();                 // .slice(0, -1);
             console.log("Retrieving data for the time: " + now);
 
             const body = {
@@ -613,6 +613,8 @@ define
                resolution: "day",
                aggregation_type: "average"
             };
+
+            console.log(body);
 
             const options = {
                method: 'POST',
