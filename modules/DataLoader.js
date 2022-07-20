@@ -594,6 +594,30 @@ define
             let now = (new Date(Date.now() - tzoffset)).toISOString();                 // .slice(0, -1);
             console.log("Retrieving data for the time: " + now);
 
+            /* 
+            Postman body payload: 
+            {
+               "subfleet":{
+                  "realtime":false,
+                  "geo_fences":[
+                     {
+                        "buffer_meters":0,
+                        "geo_features": [
+                           {
+                              "uri":"/geo_features/3914125781"
+                           }
+                        ]
+                     }
+                  ],
+                  "start_time": "2022-07-20T15:26:48.933Z"
+               },
+               "metric_types":[
+                  "fleet_size"
+               ],
+               "resolution":"day",
+               "aggregation_type":"average"
+            }
+            */
             const body = {
                subfleet: {
                   realtime: false,
@@ -602,7 +626,7 @@ define
                         buffer_meters: 0,
                         // Loops through all the geo features, retreiving their id's. Id's are then used to create an array of objects containing 'uri' field,
                         // which are used to retrieve the fleet size for a given geo fence object -> uri. E.g.: fleet size for a given polygon of coordinates.
-                        geo_features: geoFeatures.features.map(feature => ({ uri: feature.id.toString() }))
+                        geo_features: geoFeatures.features.map(feature => ({ uri: "/geo_features/" + feature.id.toString() }))
                      }
                   ],
                   start_time: now
