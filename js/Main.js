@@ -15,7 +15,8 @@ define
             'DS/WAFData/WAFData',
 
             // Libraries
-            'Lib/leaflet'
+            'Lib/leaflet',
+            'Lib/leaflet/dist'
         ],
         function
             (
@@ -25,7 +26,8 @@ define
                 WidgetManager,
                 VariableManager,
                 WAFData,
-                leaflet
+                leaflet,
+                dist
             ) {
             // Declare public functions or variables here. Accessible by other modules. Call it by "Main.<function>". Usage sample, e.g. Main.onLoad() 
 
