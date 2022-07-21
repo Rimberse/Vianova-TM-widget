@@ -340,6 +340,8 @@ define
                event.stopPropagation();
 
                const filterBy = event.target.value;
+               // widget addData representation name
+               const name = filterBy.charAt(0).toUpperCase() + filterBy.slice(1).replaceAll('_', ' ');
 
                // Removes all the existing layers from the map
                map.eachLayer(layer => map.removeLayer(layer));
@@ -517,8 +519,8 @@ define
 
                      makeAPIRequest('addData', {
                         "representation": {
-                           "id": "vianova",
-                           "name": filterBy
+                           "id": filterBy,
+                           "name": name
                         },
                         "geojson": geoJSON
                      });
@@ -593,8 +595,8 @@ define
 
                   makeAPIRequest('addData', {
                      "representation": {
-                        "id": "vianova",
-                        "name": filterBy
+                        "id": filterBy,
+                        "name": name
                      },
                      "geojson": geoJSON
                   });
