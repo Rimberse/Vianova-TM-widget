@@ -14,8 +14,7 @@ define
             // To make HTTP requests
             'DS/WAFData/WAFData',
 
-            // Libraries
-            'Lib/leaflet'
+            
         ],
         function
             (
@@ -24,8 +23,7 @@ define
                 DataLoader,
                 WidgetManager,
                 VariableManager,
-                WAFData,
-                leaflet
+                WAFData
             ) {
             // Declare public functions or variables here. Accessible by other modules. Call it by "Main.<function>". Usage sample, e.g. Main.onLoad() 
 
