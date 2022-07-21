@@ -590,34 +590,15 @@ define
             // now.setDate(now.getDate() - 1);
             // now = now.toISOString();
 
-            let tzoffset = (new Date()).getTimezoneOffset() * 60000 + 3600000;         // offset in milliseconds
+            // 1 second to ms: 1000
+            // 1 minutes to ms: 60000
+            // 1 hour to ms: 3600000
+            // 1 day to ms: 86400000
+            // 1 week to ms: 604800000
+            let tzoffset = (new Date()).getTimezoneOffset() * 60000 + 86400000;         // offset in milliseconds (yesterday date)
             let now = (new Date(Date.now() - tzoffset)).toISOString();                 // .slice(0, -1);
             console.log("Retrieving data for the time: " + now);
 
-            /* 
-            Postman body payload: 
-            {
-               "subfleet":{
-                  "realtime":false,
-                  "geo_fences":[
-                     {
-                        "buffer_meters":0,
-                        "geo_features": [
-                           {
-                              "uri":"/geo_features/3914125781"
-                           }
-                        ]
-                     }
-                  ],
-                  "start_time": "2022-07-20T15:26:48.933Z"
-               },
-               "metric_types":[
-                  "fleet_size"
-               ],
-               "resolution":"day",
-               "aggregation_type":"average"
-            }
-            */
             const body = {
                subfleet: {
                   realtime: false,
