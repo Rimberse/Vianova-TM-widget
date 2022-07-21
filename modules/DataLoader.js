@@ -372,7 +372,7 @@ define
 
                // Verify if state object already contains the data, to tell if a web service has already been called and the data retrieved, if it's the case, then retrieve it's value value for a given tag
                if (state[filterBy]) {
-                  const markers = L.markerClusterGroup({
+                  const markers = new window.L.markerClusterGroup({
                      disableClusteringAtZoom: 22
                   });
 
@@ -472,7 +472,7 @@ define
                            state[filterBy] = { GeoJSON: geoJSON, "color interpolation": colorInterpolation };
                         }
 
-                        const markers = L.markerClusterGroup({
+                        const markers = new window.L.markerClusterGroup({
                            disableClusteringAtZoom: 22
                         });
 
@@ -538,7 +538,7 @@ define
                         state[filterBy] = { GeoJSON: geoJSON, "color interpolation": colorInterpolation };
                      }
 
-                     const markers = L.markerClusterGroup({
+                     const markers = new window.L.markerClusterGroup({
                         disableClusteringAtZoom: 22
                      });
 
