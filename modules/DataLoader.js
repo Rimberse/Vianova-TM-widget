@@ -372,9 +372,9 @@ define
 
                // Verify if state object already contains the data, to tell if a web service has already been called and the data retrieved, if it's the case, then retrieve it's value value for a given tag
                if (state[filterBy]) {
-                  const markers = L.markerClusterGroup({
-                     disableClusteringAtZoom: 22
-                  });
+                  // const markers = L.markerClusterGroup({
+                  //    disableClusteringAtZoom: 22
+                  // });
 
                   lastColorIndexes = {};
 
@@ -404,7 +404,8 @@ define
                            return { color: myStyle.color, weight: myStyle.weight, opacity: myStyle.opacity };
                         }
                      } : myStyle,
-                     pointToLayer: (feature, latlng) => markers.addLayer(L.circleMarker(latlng, geojsonMarkerOptions)),
+                     // pointToLayer: (feature, latlng) => markers.addLayer(L.circleMarker(latlng, geojsonMarkerOptions)),
+                     pointToLayer: (feature, latlng) => L.circleMarker(latlng, geojsonMarkerOptions),
                      onEachFeature: onEachFeature
                   }).addTo(map);
 
@@ -472,9 +473,9 @@ define
                            state[filterBy] = { GeoJSON: geoJSON, "color interpolation": colorInterpolation };
                         }
 
-                        const markers = L.markerClusterGroup({
-                           disableClusteringAtZoom: 22
-                        });
+                        // const markers = L.markerClusterGroup({
+                        //    disableClusteringAtZoom: 22
+                        // });
 
                         lastColorIndexes = {};
 
@@ -504,7 +505,8 @@ define
                                  return { color: myStyle.color, weight: myStyle.weight, opacity: myStyle.opacity };
                               }
                            } : myStyle,
-                           pointToLayer: (feature, latlng) => markers.addLayer(L.circleMarker(latlng, geojsonMarkerOptions)),
+                           // pointToLayer: (feature, latlng) => markers.addLayer(L.circleMarker(latlng, geojsonMarkerOptions)),
+                           pointToLayer: (feature, latlng) => L.circleMarker(latlng, geojsonMarkerOptions),
                            onEachFeature: onEachFeature
                         }).addTo(map);
                      })
@@ -538,9 +540,9 @@ define
                         state[filterBy] = { GeoJSON: geoJSON, "color interpolation": colorInterpolation };
                      }
 
-                     const markers = L.markerClusterGroup({
-                        disableClusteringAtZoom: 22
-                     });
+                     // const markers = L.markerClusterGroup({
+                     //    disableClusteringAtZoom: 22
+                     // });
 
                      let lastColorIndexes = {};
 
@@ -571,7 +573,8 @@ define
                               return { color: myStyle.color, weight: myStyle.weight, opacity: myStyle.opacity };
                            }
                         } : myStyle,
-                        pointToLayer: (feature, latlng) => markers.addLayer(L.circleMarker(latlng, geojsonMarkerOptions)),
+                        // pointToLayer: (feature, latlng) => markers.addLayer(L.circleMarker(latlng, geojsonMarkerOptions)),
+                        pointToLayer: (feature, latlng) => L.circleMarker(latlng, geojsonMarkerOptions),
                         onEachFeature: onEachFeature
                      }).addTo(map);
                   })
