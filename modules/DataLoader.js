@@ -515,6 +515,14 @@ define
                         console.log(error);
                      });
 
+                     makeAPIRequest('addData', {
+                        "representation": {
+                           "id": "vianova",
+                           "name": filterBy
+                        },
+                        "geojson": geoJSON
+                     });
+
                   return;
                }
 
@@ -581,6 +589,14 @@ define
                   .catch(error => {
                      alert("NO DATA!");
                      console.log(error);
+                  });
+
+                  makeAPIRequest('addData', {
+                     "representation": {
+                        "id": "vianova",
+                        "name": filterBy
+                     },
+                     "geojson": geoJSON
                   });
             }
          };
