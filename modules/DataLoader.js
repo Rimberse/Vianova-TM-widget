@@ -4,17 +4,13 @@ define
       [
          'DS/PlatformAPI/PlatformAPI',
          'DS/i3DXCompassServices/i3DXCompassServices',
-         'Modules/WidgetManager',
-
-         // Libraries
-         'Lib/leaflet'
+         'Modules/WidgetManager'
       ],
       function
          (
             PlatformAPI,
             i3DXCompassServices,
             WidgetManager,
-            leaflet
          ) {
 
          console.info('Data loader has been loaded');
